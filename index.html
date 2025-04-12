@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Search Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main>
+        <div class="search-container">
+            <form id="searchForm">
+                <input type="text" id="searchInput" placeholder="Search for movies..." required>
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+        <div class="grid" id="resultsGrid"></div>
+        
+        <!-- Movie Detail Modal -->
+        <div id="movieDetailModal" class="modal hidden">
+            <div class="modal-content">
+                <span id="closeModal" class="close">&times;</span>
+                <div class="modal-inner">
+                    <img id="modalPoster" src="" alt="Poster">
+                    <div class="modal-info">
+                        <h2 id="modalTitle">Movie Title</h2>
+                        <p id="modalYear">Year • Genre • Runtime</p>
+                        <p id="modalPlot">Plot goes here...</p>
+                        <p><strong>Director:</strong> <span id="modalDirector"></span></p>
+                        <p><strong>Actors:</strong> <span id="modalActors"></span></p>
+                        <p><strong>IMDb Rating:</strong> <span id="modalRating"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
