@@ -296,13 +296,13 @@ button:hover {
     }
   
     .modal-content {
+        height: fit-content;
       padding: 1.2rem;
       max-height: 90vh;
     }
   
     .modal img {
       max-width: 100%;
-      height: 300px !important;
       border-radius: 10px;
       object-position: 0px -40px;
     }
