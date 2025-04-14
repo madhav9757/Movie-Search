@@ -7,7 +7,10 @@ const closeModal = document.getElementById('closeModal');
 // Store fetched movie details by IMDb ID
 const detailCache = {};
 
-closeModal.addEventListener('click', () => modal.classList.add('hidden'));
+closeModal.addEventListener('click', () => {
+  modal.classList.add('hidden');
+  document.body.classList.remove('modal-open');
+});
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -71,4 +74,5 @@ function showMovieDetails(movie) {
   document.getElementById('modalRating').textContent = movie.imdbRating;
 
   modal.classList.remove('hidden');
+  document.body.classList.add('modal-open');
 }
