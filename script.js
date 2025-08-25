@@ -53,7 +53,7 @@ form.addEventListener('submit', async (e) => {
 });
 
 async function fetchMovieDetails(imdbID) {
-  if (detailCache[imdbID]) return; // Already cached
+  if (detailCache[imdbID]) return;
   try {
     const res = await fetch(`https://www.omdbapi.com/?i=${imdbID}&apikey=33f76330`);
     const movie = await res.json();
