@@ -26,7 +26,7 @@ form.addEventListener('submit', async (e) => {
   if (data.Response === "True") {
     data.Search.forEach(movie => {
       const div = document.createElement('div');
-      div.className = 'movie';
+      div.className = 'movie'
       div.innerHTML = `
         <img src="${movie.Poster !== "N/A" ? movie.Poster : 'https://via.placeholder.com/200x300?text=No+Image'}" alt="${movie.Title}">
         <h3>${movie.Title}</h3>
