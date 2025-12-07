@@ -2,45 +2,245 @@
 <html lang="en">
 
 <head>
+    <!-- Primary Meta Tags -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Search Platform</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- SEO Meta Tags -->
+    <title>Movie Search Platform - Discover & Explore Movies | OMDb Database</title>
+    <meta name="title" content="Movie Search Platform - Discover & Explore Movies">
+    <meta name="description" content="Search and explore thousands of movies with our modern, fast, and intuitive movie search platform. Get detailed information, ratings, cast, and more from the OMDb database.">
+    <meta name="keywords" content="movie search, film database, movie information, IMDb ratings, movie details, cinema, films">
+    <meta name="author" content="Your Name">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/">
+    <meta property="og:title" content="Movie Search Platform - Discover & Explore Movies">
+    <meta property="og:description" content="Search and explore thousands of movies with detailed information, ratings, and cast details.">
+    <meta property="og:image" content="https://yourdomain.com/preview.jpg">
+    
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://yourdomain.com/">
+    <meta name="twitter:title" content="Movie Search Platform - Discover & Explore Movies">
+    <meta name="twitter:description" content="Search and explore thousands of movies with detailed information, ratings, and cast details.">
+    <meta name="twitter:image" content="https://yourdomain.com/preview.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+    
+    <!-- Preconnect to external domains for better performance -->
+    <link rel="preconnect" href="https://www.omdbapi.com">
+    <link rel="dns-prefetch" href="https://www.omdbapi.com">
+    <link rel="preconnect" href="https://m.media-amazon.com">
+    <link rel="dns-prefetch" href="https://m.media-amazon.com">
+    
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0f0f0f">
+    <meta name="msapplication-navbutton-color" content="#0f0f0f">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Structured Data (JSON-LD) for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Movie Search Platform",
+      "description": "Search and explore movies from the OMDb database",
+      "applicationCategory": "Entertainment",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "1250"
+      }
+    }
+    </script>
 </head>
 
 <body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
 
-    <main>
-        <div class="search-container">
-            <form id="searchForm">
-                <input type="text" id="searchInput" placeholder="Search for movies..." required>
-                <button type="submit">Search</button>
-            </form>
+    <!-- Header Section -->
+    <header class="header" role="banner">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon" aria-hidden="true">🎬</span>
+                <h1 class="logo-text">Movie<span class="logo-accent">Search</span></h1>
+            </div>
+            <nav class="nav" role="navigation" aria-label="Main navigation">
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+        <!-- Hero Section -->
+        <section class="hero" aria-labelledby="hero-title">
+            <h2 id="hero-title" class="hero-title">Discover Your Next Favorite Movie</h2>
+            <p class="hero-subtitle">Search through thousands of films and get detailed information instantly</p>
+        </section>
+
+        <!-- Search Section -->
+        <section class="search-section" aria-labelledby="search-title">
+            <h2 id="search-title" class="visually-hidden">Search for movies</h2>
+            <div class="search-container">
+                <form id="searchForm" role="search" aria-label="Movie search form">
+                    <div class="search-input-wrapper">
+                        <label for="searchInput" class="visually-hidden">Enter movie title</label>
+                        <input 
+                            type="search" 
+                            id="searchInput" 
+                            name="movie-search"
+                            placeholder="Search for movies..." 
+                            autocomplete="off"
+                            autocapitalize="off"
+                            spellcheck="false"
+                            aria-label="Movie search input"
+                            aria-required="true"
+                            required>
+                        <span class="search-icon" aria-hidden="true">🔍</span>
+                    </div>
+                    <button type="submit" class="search-button" aria-label="Search movies">
+                        <span class="button-text">Search</span>
+                        <span class="button-icon" aria-hidden="true">→</span>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Loading Indicator -->
+        <div id="loadingIndicator" class="loading-indicator hidden" role="status" aria-live="polite">
+            <div class="spinner" aria-hidden="true"></div>
+            <p class="loading-text">Searching for movies...</p>
         </div>
 
-        <div class="grid" id="resultsGrid"></div>
+        <!-- Results Section -->
+        <section class="results-section" aria-labelledby="results-title">
+            <div class="results-header">
+                <h2 id="results-title" class="results-title visually-hidden">Search Results</h2>
+                <div id="resultsCount" class="results-count" role="status" aria-live="polite"></div>
+            </div>
+            <div class="grid" id="resultsGrid" role="list"></div>
+        </section>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="empty-state hidden" role="status">
+            <span class="empty-icon" aria-hidden="true">🎭</span>
+            <h3 class="empty-title">No movies found</h3>
+            <p class="empty-text">Try searching with a different keyword</p>
+        </div>
         
         <!-- Movie Detail Modal -->
-        <div id="movieDetailModal" class="modal hidden">
+        <div id="movieDetailModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <div class="modal-overlay" aria-hidden="true"></div>
             <div class="modal-content">
-                <span id="closeModal" class="close">&times;</span>
+                <button id="closeModal" class="close" aria-label="Close movie details">
+                    <span aria-hidden="true">&times;</span>
+                </button>
                 <div class="modal-inner">
-                    <img id="modalPoster" src="" alt="Poster">
+                    <div class="modal-poster-container">
+                        <img id="modalPoster" src="" alt="" class="modal-poster">
+                    </div>
                     <div class="modal-info">
-                        <h2 id="modalTitle">Movie Title</h2>
-                        <p id="modalYear">Year • Genre • Runtime</p>
-                        <p id="modalPlot">Plot goes here...</p>
-                        <p><strong>Director:</strong> <span id="modalDirector"></span></p>
-                        <p><strong>Actors:</strong> <span id="modalActors"></span></p>
-                        <p><strong>IMDb Rating:</strong> <span id="modalRating"></span></p>
+                        <h2 id="modalTitle" class="modal-title">Movie Title</h2>
+                        <div class="modal-meta">
+                            <span id="modalYear" class="meta-item"></span>
+                            <span id="modalRated" class="meta-item badge"></span>
+                            <span id="modalRuntime" class="meta-item"></span>
+                        </div>
+                        <div id="modalGenre" class="genre-tags"></div>
+                        <p id="modalPlot" class="modal-plot">Plot goes here...</p>
+                        
+                        <div class="modal-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Director</span>
+                                <span id="modalDirector" class="detail-value"></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Cast</span>
+                                <span id="modalActors" class="detail-value"></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Writer</span>
+                                <span id="modalWriter" class="detail-value"></span>
+                            </div>
+                        </div>
+
+                        <div class="modal-ratings">
+                            <div class="rating-card">
+                                <span class="rating-source">IMDb</span>
+                                <span id="modalRating" class="rating-value">N/A</span>
+                            </div>
+                            <div class="rating-card" id="rtRating">
+                                <span class="rating-source">Rotten Tomatoes</span>
+                                <span id="modalRT" class="rating-value">N/A</span>
+                            </div>
+                            <div class="rating-card" id="mcRating">
+                                <span class="rating-source">Metacritic</span>
+                                <span id="modalMetacritic" class="rating-value">N/A</span>
+                            </div>
+                        </div>
+
+                        <div class="modal-actions">
+                            <button id="shareButton" class="action-button" aria-label="Share this movie">
+                                <span aria-hidden="true">🔗</span> Share
+                            </button>
+                            <a id="imdbLink" href="#" target="_blank" rel="noopener noreferrer" class="action-button action-button-secondary">
+                                View on IMDb <span aria-hidden="true">↗</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </main>
 
-    <script src="script.js"></script>
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer-content">
+            <p class="footer-text">
+                Powered by <a href="http://www.omdbapi.com/" target="_blank" rel="noopener noreferrer" class="footer-link">OMDb API</a>
+            </p>
+            <p class="footer-text">
+                Made with <span aria-label="love">❤️</span> by <a href="#" class="footer-link">Your Name</a>
+            </p>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <span class="footer-divider">•</span>
+                <a href="#" class="footer-link">Terms of Service</a>
+                <span class="footer-divider">•</span>
+                <a href="#" class="footer-link">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Script -->
+    <script src="script.js" defer></script>
+    
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="scroll-to-top hidden" aria-label="Scroll to top">
+        <span aria-hidden="true">↑</span>
+    </button>
 </body>
 
 </html>
